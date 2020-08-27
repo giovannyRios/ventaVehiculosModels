@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ventaVehiculosModelStoreContainer" CdmEntityContainer="ventaVehiculosEntities">
+    <EntitySetMapping Name="loginUser">
+      <EntityTypeMapping TypeName="ventaVehiculosModel.loginUser">
+        <MappingFragment StoreEntitySet="loginUser">
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="UserStr" ColumnName="UserStr" />
+          <ScalarProperty Name="pass" ColumnName="pass" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
