@@ -16,6 +16,7 @@ namespace ventaVehiculosModels.Models
         [Display(Name = "clave")]
         [Required]
         [StringLength(8, ErrorMessage = "Clave supera la cantidad de caracteres permitidos, valide e intente nuevamente")]
+        [DataType(DataType.Password)]
         public string pass { get; set; }
     }
 }

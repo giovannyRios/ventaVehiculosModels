@@ -5,6 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="ventaVehiculosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="car">
+          <Key>
+            <PropertyRef Name="IdCar" />
+          </Key>
+          <Property Name="IdCar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="brand" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="people_capacity" Type="int" Nullable="false" />
+          <Property Name="transmission_type" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
         <EntityType Name="loginUser">
           <Key>
             <PropertyRef Name="idUser" />
@@ -15,6 +24,7 @@
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityContainer Name="ventaVehiculosModelStoreContainer">
+          <EntitySet Name="car" EntityType="Self.car" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="loginUser" EntityType="Self.loginUser" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema>
@@ -22,6 +32,15 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ventaVehiculosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="car">
+          <Key>
+            <PropertyRef Name="IdCar" />
+          </Key>
+          <Property Name="IdCar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="brand" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="people_capacity" Type="Int32" Nullable="false" />
+          <Property Name="transmission_type" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
         <EntityType Name="loginUser">
           <Key>
             <PropertyRef Name="idUser" />
@@ -32,6 +51,7 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityContainer Name="ventaVehiculosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="car" EntityType="Self.car" />
           <EntitySet Name="loginUser" EntityType="Self.loginUser" />
         </EntityContainer>
       </Schema>
@@ -40,6 +60,16 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ventaVehiculosModelStoreContainer" CdmEntityContainer="ventaVehiculosEntities">
+          <EntitySetMapping Name="car">
+            <EntityTypeMapping TypeName="ventaVehiculosModel.car">
+              <MappingFragment StoreEntitySet="car">
+                <ScalarProperty Name="IdCar" ColumnName="IdCar" />
+                <ScalarProperty Name="brand" ColumnName="brand" />
+                <ScalarProperty Name="people_capacity" ColumnName="people_capacity" />
+                <ScalarProperty Name="transmission_type" ColumnName="transmission_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="loginUser">
             <EntityTypeMapping TypeName="ventaVehiculosModel.loginUser">
               <MappingFragment StoreEntitySet="loginUser">

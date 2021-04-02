@@ -100,49 +100,53 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Models\EntityFramework\entityDataModel.Context.tt">
+    <Content Include="Models\EntityFramework\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>entityDataModel.edmx</DependentUpon>
-      <LastGenOutput>entityDataModel.Context.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\EntityFramework\entityDataModel.tt">
+    <Content Include="Models\EntityFramework\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>entityDataModel.edmx</DependentUpon>
-      <LastGenOutput>entityDataModel.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\dateUsersModels.cs" />
     <Compile Include="Models\DTOs\AutoMapperConfiguration.cs" />
+    <Compile Include="Models\DTOs\carDTO.cs" />
     <Compile Include="Models\DTOs\loginUserDTO.cs" />
-    <Compile Include="Models\EntityFramework\entityDataModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>entityDataModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityFramework\entityDataModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>entityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityFramework\entityDataModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>entityDataModel.edmx</DependentUpon>
+    <Compile Include="Models\EntityFramework\car.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EntityFramework\loginUser.cs">
-      <DependentUpon>entityDataModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntityFramework\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntityFramework\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntityFramework\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Models\EntityFramework\entityDataModel.edmx">
+    <EntityDeploy Include="Models\EntityFramework\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>entityDataModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\EntityFramework\entityDataModel.edmx.diagram">
-      <DependentUpon>entityDataModel.edmx</DependentUpon>
+    <Content Include="Models\EntityFramework\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
