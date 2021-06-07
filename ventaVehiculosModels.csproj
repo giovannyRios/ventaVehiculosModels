@@ -113,7 +113,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Log\CreacionLog.cs" />
+    <Compile Include="Models\Log\CreacionLog.cs" />
     <Compile Include="Models\dateUsersModels.cs" />
     <Compile Include="Models\DTOs\AutoMapperConfiguration.cs" />
     <Compile Include="Models\DTOs\carDTO.cs" />

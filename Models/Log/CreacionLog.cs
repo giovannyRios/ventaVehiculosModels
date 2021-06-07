@@ -6,7 +6,7 @@ using System.Configuration;
 using System.IO;
 using System.Text;
 
-namespace ventaVehiculosModels.Log
+namespace ventaVehiculosModels.Models.Log
 {
     class CreacionLog
     {
