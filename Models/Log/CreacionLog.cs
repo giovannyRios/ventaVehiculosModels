@@ -8,7 +8,7 @@ using System.Text;
 
 namespace ventaVehiculosModels.Models.Log
 {
-    class CreacionLog
+    public class CreacionLog
     {
         #region patron_singleton
 

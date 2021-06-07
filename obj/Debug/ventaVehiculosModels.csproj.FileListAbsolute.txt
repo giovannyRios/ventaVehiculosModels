@@ -67,4 +67,3 @@ C:\inetpub\wwwroot\VentaVehiculosModels\ventaVehiculosModels\bin\Microsoft.CodeD
 C:\inetpub\wwwroot\VentaVehiculosModels\ventaVehiculosModels\obj\Debug\ventaVehiculosModels.csproj.CopyComplete
 C:\inetpub\wwwroot\VentaVehiculosModels\ventaVehiculosModels\obj\Debug\ventaVehiculosModels.dll
 C:\inetpub\wwwroot\VentaVehiculosModels\ventaVehiculosModels\obj\Debug\ventaVehiculosModels.pdb
-C:\inetpub\wwwroot\VentaVehiculosModels\VentaVehiculosModels\obj\Debug\ventaVehiculosModels.csprojAssemblyReference.cache
