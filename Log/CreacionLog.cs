@@ -43,6 +43,7 @@ namespace ventaVehiculosModels.Log
         {
             try
             {
+
                 string ruta = ConfigurationManager.AppSettings["rutaLog"].ToString();
                 string nombreArchivoSinFecha = ConfigurationManager.AppSettings["nombreArchivoLog"].ToString();
                 string nombreFecha = nombreArchivoSinFecha.Replace("Fecha", DateTime.Now.ToShortDateString());
