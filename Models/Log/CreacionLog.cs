@@ -8,7 +8,7 @@ using System.Text;
 
 namespace ventaVehiculosModels.Models.Log
 {
-    public class CreacionLog
+    class CreacionLog
     {
         #region patron_singleton
 
@@ -39,7 +39,7 @@ namespace ventaVehiculosModels.Models.Log
         /// Metodo que permite escribir archivo en txt con formato
         /// </summary>
         /// <param name="log"></param>
-        public static void escribirLog(string log)
+        public void escribirLog(string log)
         {
             try
             {
