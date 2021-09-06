@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Security.Cryptography;
 using System.IO;
+using ventaVehiculosModels.Models.Log;
 
 namespace ventaVehiculosModels.Models.cifrado
 {
@@ -15,7 +16,7 @@ namespace ventaVehiculosModels.Models.cifrado
         public string value;
         private cifradoClass() { }
 
-        private static readonly object _lock = new object();
+        private static readonly object _lock = new object();    
         public static cifradoClass instance(string valor)
         {
             if (_instance == null)
@@ -167,6 +168,7 @@ namespace ventaVehiculosModels.Models.cifrado
             Rfc2898DeriveBytes llaveConstructora = new Rfc2898DeriveBytes(llaveEncripcion, Encoding.Unicode.GetBytes(saltoAlgoritmo));
             RijndaelManaged algoritmo = new RijndaelManaged();
             algoritmo.KeySize = TamanioLlave;
+            algoritmo.BlockSize = TamanioLlave;
             algoritmo.IV = llaveConstructora.GetBytes((int)(algoritmo.BlockSize / 8));
             algoritmo.Key = llaveConstructora.GetBytes((int)(algoritmo.KeySize / 8));
             algoritmo.Padding = PaddingMode.PKCS7;
@@ -179,12 +181,93 @@ namespace ventaVehiculosModels.Models.cifrado
             Rfc2898DeriveBytes llaveConstructora = new Rfc2898DeriveBytes(llaveEncripcion, Encoding.Unicode.GetBytes(llaveUsuario));
             RijndaelManaged algoritmo = new RijndaelManaged();
             algoritmo.KeySize = TamanioLlave;
+            algoritmo.BlockSize = TamanioLlave;
             algoritmo.IV = llaveConstructora.GetBytes((int)(algoritmo.BlockSize / 8));
             algoritmo.Key = llaveConstructora.GetBytes((int)(algoritmo.KeySize / 8));
             algoritmo.Padding = PaddingMode.PKCS7;
             return algoritmo;
         }
 
+        public string cifrarAes(string key, string IV, string plainText, string user) 
+        {
+            try 
+            {
+                string resultado = "";
+                if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(IV))
+                {
+                    throw new ArgumentNullException("key or IV is null or Empty");
+                }
+
+                using (AesManaged AesAlg = new AesManaged())
+                {
+                    AesAlg.Key = Encoding.ASCII.GetBytes(key);
+                    AesAlg.IV = Encoding.ASCII.GetBytes(IV);
+                    AesAlg.KeySize = 256;
+                    AesAlg.BlockSize = 256;
+                    ICryptoTransform cryptoTransform = AesAlg.CreateEncryptor(AesAlg.Key, AesAlg.IV);
+                    using (MemoryStream memoryStream = new MemoryStream())
+                    {
+                        using (CryptoStream crypto = new CryptoStream(memoryStream,cryptoTransform,CryptoStreamMode.Write))
+                        {
+                            using (StreamWriter stream = new StreamWriter(crypto))
+                            {
+                                stream.Write(plainText);
+                            }
+                            resultado = System.Text.Encoding.Default.GetString(memoryStream.ToArray());
+                        }
+                    }
+
+                }
+
+                return resultado;
+            } 
+            catch (Exception ex)
+            {
+                consumirLog.crearRegistroLog(user,ex.ToString());
+                throw new Exception(ex.ToString());
+            }
+
+        }
+
+        public string desCifrarAes(string key, string IV, string TextEncrypted, string user)
+        {
+            try
+            {
+                string resultado = "";
+                if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(IV))
+                {
+                    throw new ArgumentNullException("key or IV is null or Empty");
+                }
+
+                using (AesManaged AesAlg = new AesManaged())
+                {
+                    AesAlg.Key = Encoding.ASCII.GetBytes(key);
+                    AesAlg.IV = Encoding.ASCII.GetBytes(IV);
+                    AesAlg.KeySize = 256;
+                    AesAlg.BlockSize = 256;
+                    ICryptoTransform cryptoTransform = AesAlg.CreateEncryptor(AesAlg.Key, AesAlg.IV);
+                    using (MemoryStream memoryStream = new MemoryStream(Encoding.ASCII.GetBytes(TextEncrypted)))
+                    {
+                        using (CryptoStream crypto = new CryptoStream(memoryStream, cryptoTransform, CryptoStreamMode.Read))
+                        {
+                            using (StreamReader stream = new StreamReader(crypto))
+                            {
+                                resultado = stream.ReadToEnd();
+                            }
+                        }
+                    }
+
+                }
+
+                return resultado;
+
+            }
+            catch (Exception ex)
+            {
+                consumirLog.crearRegistroLog(user, ex.ToString());
+                throw new Exception(ex.ToString());
+            }
+        }
 
     }
 }

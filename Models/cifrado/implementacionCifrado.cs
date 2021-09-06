@@ -22,11 +22,11 @@ namespace ventaVehiculosModels.Models.cifrado
                 string llaveUsuario = ConfigurationManager.AppSettings["SecretUser"].ToString();
                 string llaveSecreta = ConfigurationManager.AppSettings["Secretkey"].ToString();
                 cifradoClass objCifrado = cifradoClass.instance(valUser);
-                return objCifrado.cifrarEnString(PlainText, llaveSecreta, llaveUsuario);
+                return objCifrado.cifrarAes(llaveSecreta,llaveUsuario, PlainText, valUser);
             }
             catch (Exception ex)
             {
-                cunsumirLog.crearRegistroLog("ventaVehiculosModels" + DateTime.Now.ToShortDateString(), "Ha ocurrido un error al momento de cifrar: " + ex.ToString());
+                consumirLog.crearRegistroLog("ventaVehiculosModels" + DateTime.Now.ToShortDateString(), "Ha ocurrido un error al momento de cifrar: " + ex.ToString());
                 return "";
             }     
         }
@@ -45,11 +45,11 @@ namespace ventaVehiculosModels.Models.cifrado
                 string llaveUsuario = ConfigurationManager.AppSettings["SecretUser"].ToString();
                 string llaveSecreta = ConfigurationManager.AppSettings["Secretkey"].ToString();
                 cifradoClass objCifrado = cifradoClass.instance(valUser);
-                return objCifrado.descifrarEnString(textEncrypt, llaveSecreta, llaveUsuario);
+                return objCifrado.desCifrarAes(llaveSecreta, llaveUsuario, textEncrypt, valUser);
             }
             catch (Exception ex)
             {
-                cunsumirLog.crearRegistroLog("ventaVehiculosModels" + DateTime.Now.ToShortDateString(), "Ha ocurrido un error al momento de cifrar: " + ex.ToString());
+                consumirLog.crearRegistroLog("ventaVehiculosModels" + DateTime.Now.ToShortDateString(), "Ha ocurrido un error al momento de cifrar: " + ex.ToString());
                 return "";
             }
         }
