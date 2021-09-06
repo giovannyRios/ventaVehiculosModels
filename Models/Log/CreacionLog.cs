@@ -46,12 +46,12 @@ namespace ventaVehiculosModels.Models.Log
 
                 string ruta = ConfigurationManager.AppSettings["rutaLog"].ToString();
                 string nombreArchivoSinFecha = ConfigurationManager.AppSettings["nombreArchivoLog"].ToString();
-                string nombreFecha = nombreArchivoSinFecha.Replace("Fecha", DateTime.Now.ToShortDateString());
-                string rutaFinal = ruta + nombreFecha + ".txt";
+                string nombreFecha = nombreArchivoSinFecha.Replace("Fecha", DateTime.Now.Day.ToString());
+                string rutaFinal = string.Concat(ruta,nombreFecha,".txt");
 
-                if (!File.Exists(rutaFinal)) 
+                if (!File.Exists(@rutaFinal)) 
                 {
-                    using (FileStream fs = File.Create(rutaFinal))
+                    using (FileStream fs = File.Create(@rutaFinal))
                     {
                         byte[] informacion = new UTF8Encoding(true).GetBytes(log);
                         fs.Write(informacion, 0, informacion.Length);
