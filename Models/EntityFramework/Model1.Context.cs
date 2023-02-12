@@ -25,6 +25,7 @@ namespace ventaVehiculosModels.Models.EntityFramework
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<car> car { get; set; }
         public virtual DbSet<loginUser> loginUser { get; set; }
     }
 }

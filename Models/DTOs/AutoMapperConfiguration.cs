@@ -17,7 +17,8 @@ namespace ventaVehiculosModels.Models.DTOs
             AutoMapper.Mapper.Initialize(cfg =>
               {
                   cfg.AddCollectionMappers();
-                  cfg.CreateMap<loginUser, loginUserDTO>().ReverseMap();          
+                  cfg.CreateMap<loginUser, loginUserDTO>().ReverseMap();
+                  cfg.CreateMap<car, carDTO>().ReverseMap();
               });
         }
     }
